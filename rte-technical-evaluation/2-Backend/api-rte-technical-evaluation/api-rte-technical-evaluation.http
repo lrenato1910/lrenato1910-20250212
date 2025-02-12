@@ -1,0 +1,6 @@
+@api_rte_technical_evaluation_HostAddress = http://localhost:5230
+
+GET {{api_rte_technical_evaluation_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
