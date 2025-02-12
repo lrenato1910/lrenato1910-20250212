@@ -19,4 +19,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\infrastructure-rte-technical-evaluation\infrastructure-rte-technical-evaluation\infrastructure-rte-technical-evaluation.csproj" />
+    <ProjectReference Include="..\manager-rte-technical-evaluation\manager-rte-technical-evaluation\manager-rte-technical-evaluation.csproj" />
+    <ProjectReference Include="..\shared-rte-technical-evaluation\shared-rte-technical-evaluation\shared-rte-technical-evaluation.csproj" />
+  </ItemGroup>
+
 </Project>

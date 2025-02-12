@@ -1,13 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35521.163 d17.12
+VisualStudioVersion = 17.12.35521.163
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Frontend", "1-Frontend", "{05058644-3819-40E5-8ECE-656E5851FE60}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-Backend", "2-Backend", "{D32748DD-8280-4AF7-9BBC-17AF2FF765C6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api-rte-technical-evaluation", "2-Backend\api-rte-technical-evaluation\api-rte-technical-evaluation.csproj", "{5706042B-45E3-43D0-8840-57C98AF8A5F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "infrastructure-rte-technical-evaluation", "2-Backend\infrastructure-rte-technical-evaluation\infrastructure-rte-technical-evaluation\infrastructure-rte-technical-evaluation.csproj", "{B9B9CE25-3242-4BDF-ABDE-9F7DA64503B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shared-rte-technical-evaluation", "2-Backend\shared-rte-technical-evaluation\shared-rte-technical-evaluation\shared-rte-technical-evaluation.csproj", "{2F2248B2-0613-460F-959F-96FA9C7D97B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "manager-rte-technical-evaluation", "2-Backend\manager-rte-technical-evaluation\manager-rte-technical-evaluation\manager-rte-technical-evaluation.csproj", "{2F4B5F4B-46E4-471A-8824-126DE38A7C9D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,11 +25,26 @@ Global
 		{5706042B-45E3-43D0-8840-57C98AF8A5F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5706042B-45E3-43D0-8840-57C98AF8A5F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5706042B-45E3-43D0-8840-57C98AF8A5F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9B9CE25-3242-4BDF-ABDE-9F7DA64503B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9B9CE25-3242-4BDF-ABDE-9F7DA64503B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9B9CE25-3242-4BDF-ABDE-9F7DA64503B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9B9CE25-3242-4BDF-ABDE-9F7DA64503B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F2248B2-0613-460F-959F-96FA9C7D97B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F2248B2-0613-460F-959F-96FA9C7D97B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F2248B2-0613-460F-959F-96FA9C7D97B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F2248B2-0613-460F-959F-96FA9C7D97B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F4B5F4B-46E4-471A-8824-126DE38A7C9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F4B5F4B-46E4-471A-8824-126DE38A7C9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F4B5F4B-46E4-471A-8824-126DE38A7C9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F4B5F4B-46E4-471A-8824-126DE38A7C9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5706042B-45E3-43D0-8840-57C98AF8A5F2} = {D32748DD-8280-4AF7-9BBC-17AF2FF765C6}
+		{B9B9CE25-3242-4BDF-ABDE-9F7DA64503B1} = {D32748DD-8280-4AF7-9BBC-17AF2FF765C6}
+		{2F2248B2-0613-460F-959F-96FA9C7D97B4} = {D32748DD-8280-4AF7-9BBC-17AF2FF765C6}
+		{2F4B5F4B-46E4-471A-8824-126DE38A7C9D} = {D32748DD-8280-4AF7-9BBC-17AF2FF765C6}
 	EndGlobalSection
 EndGlobal

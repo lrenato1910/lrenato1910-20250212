@@ -1,4 +1,6 @@
-using api_rte_technical_evaluation.Models;
+using infrastructure_rte_technical_evaluation.Context;
+using infrastructure_rte_technical_evaluation.Usuario;
+using manager_rte_technical_evaluation.Usuario;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +13,24 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+});
+
 builder.Services.AddOpenApi();
+
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddTransient<IUsuarioManager, UsuarioManager>();
+
+builder.Services.AddTransient<IUsuarioDAL, UsuarioDAL>();
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -32,6 +51,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(builder
 var app = builder.Build();
 
 app.UseSwagger();
+
 app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
@@ -49,5 +69,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors("AllowAllOrigins");
 
 app.Run();
