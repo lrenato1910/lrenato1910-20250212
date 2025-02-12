@@ -36,4 +36,22 @@ public class UsuarioManager : BaseManager, IUsuarioManager
         return new ApiResultModel().WithSuccess(result);
     }
     #endregion
+
+    #region [ CreateUsuario ]
+    public async Task<ApiResultModel> CreateUsuario(shared_rte_technical_evaluation.Models.Usuario.Usuario usuario)
+    {
+        var result = await _usuarioDAL.CreateUsuario(usuario);
+
+        return new ApiResultModel().WithSuccess(result);
+    }
+    #endregion
+
+    #region [ UpdateUsuario ]
+    public async Task<ApiResultModel> UpdateUsuario(shared_rte_technical_evaluation.Models.Usuario.Usuario usuario)
+    {
+        var result = await _usuarioDAL.UpdateUsuario(usuario);
+
+        return new ApiResultModel().WithSuccess(result);
+    }
+    #endregion
 }

@@ -24,12 +24,8 @@ namespace api_rte_technical_evaluation.Controllers
         #endregion
 
         [HttpPost]
-        public async Task<IActionResult> CriarUsuario([FromBody] Usuario usuario)
-        {
-            //_context.Usuarios.Add(usuario);
-            //await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetUsuario), new { id = usuario.Id }, usuario);
-        }
+        public async Task<IActionResult> CreateUsuario([FromBody] Usuario usuario)
+            => Ok(await _usuarioManager.CreateUsuario(usuario));
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUsuario(int id)
@@ -40,16 +36,7 @@ namespace api_rte_technical_evaluation.Controllers
             => Ok(await _usuarioManager.GetUsuarioList());
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> AtualizarUsuario(int id, [FromBody] Usuario usuario)
-        {
-            //var usuarioDb = await _context.Usuarios.FindAsync(id);
-            //if (usuarioDb == null) return NotFound();
-
-            //usuarioDb.Senha = usuario.Senha;
-            //usuarioDb.Ativo = usuario.Ativo;
-            //await _context.SaveChangesAsync();
-            //return NoContent();
-            return NotFound();
-        }
+        public async Task<IActionResult> UpdateUsuario([FromBody] Usuario usuario)
+            => Ok(await _usuarioManager.UpdateUsuario(usuario));
     }
 }
