@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using shared_rte_technical_evaluation.Models.Authentication;
 
 namespace infrastructure_rte_technical_evaluation.Usuario;
 
@@ -18,8 +19,8 @@ public class UsuarioDAL : IUsuarioDAL
     }
     #endregion
 
-    #region [ GetUsuario ]
-    public async Task<shared_rte_technical_evaluation.Models.Usuario.Usuario?> GetUsuario(int id)
+    #region [ GetById ]
+    public async Task<shared_rte_technical_evaluation.Models.Usuario.Usuario?> GetById(int id)
     {
         var usuario = await _context.Usuarios.FindAsync(id);
 
@@ -27,8 +28,17 @@ public class UsuarioDAL : IUsuarioDAL
     }
     #endregion
 
-    #region [ GetUsuarioList ]
-    public async Task<IEnumerable<shared_rte_technical_evaluation.Models.Usuario.Usuario?>> GetUsuarioList()
+    #region [ Authenticate ]
+    public async Task<shared_rte_technical_evaluation.Models.Usuario.Usuario?> Authenticate(AuthenticationModel authenticationModel)
+    {
+        var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Login == authenticationModel.Login && u.Senha == authenticationModel.Senha && u.Ativo.Equals(true));
+
+        return usuario;
+    }
+    #endregion
+
+    #region [ GetAll ]
+    public async Task<IEnumerable<shared_rte_technical_evaluation.Models.Usuario.Usuario?>> GetAll()
     {
         var usuarios = await _context.Usuarios.ToListAsync();
 
@@ -36,8 +46,8 @@ public class UsuarioDAL : IUsuarioDAL
     }
     #endregion
 
-    #region [ CreateUsuario ]
-    public async Task<bool> CreateUsuario(shared_rte_technical_evaluation.Models.Usuario.Usuario usuario)
+    #region [ Create ]
+    public async Task<bool> Create(shared_rte_technical_evaluation.Models.Usuario.Usuario usuario)
     {
         _context.Usuarios.Add(usuario);
 
@@ -47,8 +57,8 @@ public class UsuarioDAL : IUsuarioDAL
     }
     #endregion
 
-    #region [ UpdateUsuario ]
-    public async Task<bool> UpdateUsuario(shared_rte_technical_evaluation.Models.Usuario.Usuario usuario)
+    #region [ Update ]
+    public async Task<bool> Update(shared_rte_technical_evaluation.Models.Usuario.Usuario usuario)
     {
         var usuarioDb = await _context.Usuarios.FindAsync(usuario.Id);
 

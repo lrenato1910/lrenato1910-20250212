@@ -19,37 +19,37 @@ public class UsuarioManager : BaseManager, IUsuarioManager
     }
     #endregion
 
-    #region [ GetUsuario ]
-    public async Task<ApiResultModel> GetUsuario(int id)
+    #region [ GetById ]
+    public async Task<ApiResultModel> GetById(int id)
     {
-        var result = await _usuarioDAL.GetUsuario(id);
+        var result = await _usuarioDAL.GetById(id);
 
         return new ApiResultModel().WithSuccess(result);
     }
     #endregion
 
-    #region [ GetUsuarioList ]
-    public async Task<ApiResultModel> GetUsuarioList()
+    #region [ GetAll ]
+    public async Task<ApiResultModel> GetAll()
     {
-        var result = await _usuarioDAL.GetUsuarioList();
+        var result = await _usuarioDAL.GetAll();
 
         return new ApiResultModel().WithSuccess(result);
     }
     #endregion
 
-    #region [ CreateUsuario ]
-    public async Task<ApiResultModel> CreateUsuario(shared_rte_technical_evaluation.Models.Usuario.Usuario usuario)
+    #region [ Create ]
+    public async Task<ApiResultModel> Create(shared_rte_technical_evaluation.Models.Usuario.Usuario usuario)
     {
-        var result = await _usuarioDAL.CreateUsuario(usuario);
+        var result = await _usuarioDAL.Create(usuario);
 
         return new ApiResultModel().WithSuccess(result);
     }
     #endregion
 
-    #region [ UpdateUsuario ]
-    public async Task<ApiResultModel> UpdateUsuario(shared_rte_technical_evaluation.Models.Usuario.Usuario usuario)
+    #region [ Update ]
+    public async Task<ApiResultModel> Update(shared_rte_technical_evaluation.Models.Usuario.Usuario usuario)
     {
-        var result = await _usuarioDAL.UpdateUsuario(usuario);
+        var result = await _usuarioDAL.Update(usuario);
 
         return new ApiResultModel().WithSuccess(result);
     }

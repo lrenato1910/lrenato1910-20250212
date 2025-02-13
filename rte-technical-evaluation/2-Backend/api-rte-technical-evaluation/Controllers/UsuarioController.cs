@@ -1,4 +1,5 @@
 ﻿using manager_rte_technical_evaluation.Usuario;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using shared_rte_technical_evaluation.Models.Usuario;
 
@@ -6,6 +7,7 @@ namespace api_rte_technical_evaluation.Controllers;
 
 [ApiController]
 [Route("api/usuarios")]
+[Authorize]
 public class UsuarioController : BaseController
 {
     #region [ PROPERTIES ]
@@ -23,19 +25,19 @@ public class UsuarioController : BaseController
     }
     #endregion
 
-    [HttpPost]
-    public async Task<IActionResult> CreateUsuario([FromBody] Usuario usuario)
-        => Ok(await _usuarioManager.CreateUsuario(usuario));
+    [HttpPost("Create")]
+    public async Task<IActionResult> Create([FromBody] Usuario usuario)
+        => Ok(await _usuarioManager.Create(usuario));
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetUsuario(int id)
-        => Ok(await _usuarioManager.GetUsuario(id));
+    public async Task<IActionResult> GetById(int id)
+        => Ok(await _usuarioManager.GetById(id));
 
     [HttpGet]
-    public async Task<IActionResult> GetUsuarioList()
-        => Ok(await _usuarioManager.GetUsuarioList());
+    public async Task<IActionResult> GetAll()
+        => Ok(await _usuarioManager.GetAll());
 
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateUsuario([FromBody] Usuario usuario)
-        => Ok(await _usuarioManager.UpdateUsuario(usuario));
+    [HttpPut]
+    public async Task<IActionResult> Update([FromBody] Usuario usuario)
+        => Ok(await _usuarioManager.Update(usuario));
 }
