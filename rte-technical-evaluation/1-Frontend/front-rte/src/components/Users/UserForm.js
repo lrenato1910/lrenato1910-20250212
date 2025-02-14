@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const UserForm = ({ onSuccess }) => {
   const [login, setLogin] = useState('');
   const [senha, setSenha] = useState('');
-  const [status, setStatus] = useState('ativo');
+  const [status, setStatus] = useState('true');
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -17,7 +17,7 @@ const UserForm = ({ onSuccess }) => {
         Id: 0
         , Login: login
         , Senha: senha
-        , Ativo: true
+        , Ativo: status === "true" ? true : false
       };
 
       const response = await api.post('usuarios/Create', Usuario, {
@@ -72,8 +72,8 @@ const UserForm = ({ onSuccess }) => {
             value={status} 
             onChange={(e) => setStatus(e.target.value)}
           >
-            <option value="ativo">Ativo</option>
-            <option value="inativo">Inativo</option>
+            <option value="true">Ativo</option>
+            <option value="false">Inativo</option>
           </select>
         </div>
         <button type="submit" className="btn btn-success w-100">

@@ -21,9 +21,6 @@ const Login = () => {
     try {
       const response = await api.post('Authenticate', credentials);
       if (response.status === 200) {
-        debugger;
-
-        console.log(response);
         let apiResultModel = response.data;
 
         if(!apiResultModel.success){
