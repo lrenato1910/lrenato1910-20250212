@@ -11,10 +11,13 @@ import UserCreate from './components/Users/UserForm';
 import UserEdit from './components/Users/UserEdit';
 import Dashboard from './components/Dashboard';
 import ProtectedRoute from './ProtectedRoute'; 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Estilos do toast
 
 const App = () => {
   return (
       <AuthProvider>
+        <ToastContainer />
           <Router>
               <Routes>
                   <Route path="/login" element={<Login />} />

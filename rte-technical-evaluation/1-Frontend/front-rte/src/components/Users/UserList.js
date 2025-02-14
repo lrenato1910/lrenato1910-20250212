@@ -1,12 +1,14 @@
 import React, { useEffect, useState, useRef } from 'react';
 import api from '../../api';
 import { Link } from 'react-router-dom';
+import useToast from '../Libs/toast/useToast';
 
 const Users = () => {
   const hasMounted = useRef(false);
   const [usuarios, setUsuarios] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const showToast = useToast();
 
   useEffect(() => {
     if (hasMounted.current) return;
@@ -21,7 +23,8 @@ const Users = () => {
               'Content-Type': 'application/json'
             }
           });
-
+          
+          showToast('Usuários listados com sucesso!', 'success');
           setUsuarios(response.data.apiResultData);
         } catch (err) {
             setError(err);

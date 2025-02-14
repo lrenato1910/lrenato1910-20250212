@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from './AuthContext';
 import api from '../../api';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const { login } = useAuth();
@@ -29,7 +30,7 @@ const Login = () => {
         }
 
         localStorage.setItem('authToken', apiResultModel.apiResultData);
-
+        toast.success('Login com sucesso!'); 
         login();
         navigate('/dashboard');
       }
