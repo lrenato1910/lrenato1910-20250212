@@ -54,4 +54,13 @@ public class UsuarioManager : BaseManager, IUsuarioManager
         return new ApiResultModel().WithSuccess(result);
     }
     #endregion
+    
+    #region [ Delete ]
+    public async Task<ApiResultModel> Delete(int id)
+    {
+        var result = await _usuarioDAL.Delete(id);
+
+        return new ApiResultModel().WithSuccess(result);
+    }
+    #endregion
 }

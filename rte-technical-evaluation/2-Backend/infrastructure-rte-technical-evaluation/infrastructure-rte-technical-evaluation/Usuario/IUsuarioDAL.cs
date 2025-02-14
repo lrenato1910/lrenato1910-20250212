@@ -10,4 +10,5 @@ public interface IUsuarioDAL
     Task<IEnumerable<shared_rte_technical_evaluation.Models.Usuario.Usuario?>> GetAll();
     Task<bool> Create(shared_rte_technical_evaluation.Models.Usuario.Usuario usuario);
     Task<bool> Update(shared_rte_technical_evaluation.Models.Usuario.Usuario usuario);
+    Task<bool> Delete(int id);
 }

@@ -40,4 +40,8 @@ public class UsuarioController : BaseController
     [HttpPut]
     public async Task<IActionResult> Update([FromBody] Usuario usuario)
         => Ok(await _usuarioManager.Update(usuario));
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete([FromRoute] int id)
+        => Ok(await _usuarioManager.Delete(id));
 }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using shared_rte_technical_evaluation.Models.Authentication;
+using shared_rte_technical_evaluation.Models.Usuario;
 
 namespace infrastructure_rte_technical_evaluation.Usuario;
 
@@ -67,6 +68,22 @@ public class UsuarioDAL : IUsuarioDAL
 
         usuarioDb.Senha = usuario.Senha;
         usuarioDb.Ativo = usuario.Ativo;
+
+        await _context.SaveChangesAsync();
+
+        return true;
+    }
+    #endregion
+
+    #region [ Update ]
+    public async Task<bool> Delete(int id)
+    {
+        var usuarioDb = await _context.Usuarios.FindAsync(id);
+
+        if (usuarioDb == null)
+            return false;
+
+        _context.Usuarios.Remove(usuarioDb);
 
         await _context.SaveChangesAsync();
 
