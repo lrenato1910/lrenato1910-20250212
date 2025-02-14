@@ -31,11 +31,33 @@ const Users = () => {
     };
 
     fetchUsuarios();
-}, []);
+  }, []);
 
+  const deleteItem = async (id) => {
+    try {
+      const response = await api.delete(`usuarios/${id}`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+          'Content-Type': 'application/json'
+        }
+      });
 
-return (
-  <div className="container mt-5">
+      if (response.status === 200) {  // Verifique se o status é 200
+          // Atualizar a tabela removendo o item excluído
+          setUsuarios(usuarios.filter(usuario => usuario.id !== id));
+      } else {
+          console.error('Erro ao excluir o item');
+      }
+    } catch (error) {
+      console.error('Erro ao excluir o item', error);
+    }
+  };
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+
+  return (
+    <div className="container mt-5">
       <h2 className="text-center mb-4">Lista de Usuários</h2>
       
       <Link to="create" className="btn btn-outline-success mb-3">
@@ -58,7 +80,7 @@ return (
                       <tr key={usuario.id}>
                           <td className='col-2'>
                             <Link to={`./edit/${usuario.id}`} className="btn btn-warning btn-sm">Editar</Link>
-                            <Link to={`./delete/${usuario.id}`} className="btn btn-danger btn-sm">Excluir</Link>
+                            <button className='btn btn-danger btn-sm' onClick={() => deleteItem(usuario.id)}>Excluir</button>
                           </td>
                           <td className='col-1'>{usuario.id}</td>
                           <td className='col-4'>{usuario.login}</td>
@@ -70,14 +92,14 @@ return (
                   ))}
                   {usuarios.length === 0 && (
                       <tr>
-                          <td colSpan="3" className="text-center">Nenhum usuário encontrado.</td>
+                          <td colSpan="5" className="text-center">Nenhum usuário encontrado.</td>
                       </tr>
                   )}
               </tbody>
           </table>
       </div>      
-  </div>
-);
+    </div>
+  );
 };
 
 export default Users;

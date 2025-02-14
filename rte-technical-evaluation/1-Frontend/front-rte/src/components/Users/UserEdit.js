@@ -62,7 +62,6 @@ const UserEdit = () => {
         return false;
       }
       
-      alert('Usuário atualizado com sucesso!');
       navigate('../users');
     } catch (err) {
       setError('Erro ao atualizar usuário. Tente novamente.');

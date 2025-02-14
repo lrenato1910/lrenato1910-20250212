@@ -27,7 +27,6 @@ const UserForm = ({ onSuccess }) => {
         }
       });
 
-      alert('Usuário cadastrado com sucesso!');
       navigate('../users');
     } catch (err) {
       setError('Erro ao cadastrar usuário. Tente novamente.');
