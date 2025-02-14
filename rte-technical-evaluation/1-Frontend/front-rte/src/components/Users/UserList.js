@@ -58,47 +58,67 @@ const Users = () => {
 
   return (
     <div className="container mt-5">
-      <h2 className="text-center mb-4">Lista de Usuários</h2>
-      
-      <Link to="create" className="btn btn-outline-success mb-3">
-          Criar Novo Usuário
-      </Link>
-      
-      <div className="mb-3">
-          <table className="table table-striped table-bordered table-hover shadow">
-              <thead className="table-light">
-                  <tr>
-                    <th>#</th>
-                    <th>ID</th>
-                    <th>Login</th>
-                    <th>Senha</th>
-                    <th>Status</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  {usuarios.map(usuario => (
-                      <tr key={usuario.id}>
-                          <td className='col-2'>
-                            <Link to={`./edit/${usuario.id}`} className="btn btn-warning btn-sm">Editar</Link>
-                            <button className='btn btn-danger btn-sm' onClick={() => deleteItem(usuario.id)}>Excluir</button>
-                          </td>
-                          <td className='col-1'>{usuario.id}</td>
-                          <td className='col-4'>{usuario.login}</td>
-                          <td className='col-4'>{usuario.senha}</td>
-                          <td className='col-2'>
-                            {usuario.ativo ? (<span className="badge bg-success">Ativo</span>) : (<span className="badge bg-danger">Inativo</span>)}                       
-                          </td>
-                      </tr>
-                  ))}
-                  {usuarios.length === 0 && (
-                      <tr>
-                          <td colSpan="5" className="text-center">Nenhum usuário encontrado.</td>
-                      </tr>
-                  )}
-              </tbody>
-          </table>
-      </div>      
+    <h2 className="text-center mb-4 text-primary">Lista de Usuários</h2>
+
+    {/* Botão para criar novo usuário */}
+    <Link to="create" className="btn btn-success mb-3">
+      <i className="fas fa-plus me-2"></i>Criar Novo Usuário
+    </Link>
+
+    {/* Tabela de usuários */}
+    <div className="table-responsive">
+      <table className="table table-striped table-bordered table-hover shadow-lg">
+        <thead className="table-dark">
+          <tr>
+            <th>Ações</th>
+            <th>ID</th>
+            <th>Login</th>
+            <th>Senha</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {usuarios.map((usuario) => (
+            <tr key={usuario.id} className="align-middle">
+              <td className="col-2">
+                <div className="d-flex gap-2">
+                  <Link
+                    to={`./edit/${usuario.id}`}
+                    className="btn btn-warning btn-sm flex-grow-1"
+                  >
+                    <i className="fas fa-edit me-1"></i>Editar
+                  </Link>
+                  <button
+                    className="btn btn-danger btn-sm flex-grow-1"
+                    onClick={() => deleteItem(usuario.id)}
+                  >
+                    <i className="fas fa-trash me-1"></i>Excluir
+                  </button>
+                </div>
+              </td>
+              <td className="col-1">{usuario.id}</td>
+              <td className="col-4">{usuario.login}</td>
+              <td className="col-4">{usuario.senha}</td>
+              <td className="col-2">
+                {usuario.ativo ? (
+                  <span className="badge bg-success">Ativo</span>
+                ) : (
+                  <span className="badge bg-danger">Inativo</span>
+                )}
+              </td>
+            </tr>
+          ))}
+          {usuarios.length === 0 && (
+            <tr>
+              <td colSpan="5" className="text-center text-muted py-4">
+                Nenhum usuário encontrado.
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
     </div>
+  </div>
   );
 };
 
