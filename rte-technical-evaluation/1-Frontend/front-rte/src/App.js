@@ -14,19 +14,23 @@ import ProtectedRoute from './ProtectedRoute';
 
 const App = () => {
   return (
-    <AuthProvider>
-      <Router>
-        <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />}>
-          <Route path="users" element={<Users />} />
-          <Route path="units" element={<Unit />} />
-          <Route path="users/create" element={<UserCreate />} />
-          <Route path="users/edit/:id" element={<UserEdit />} />
-        </Route>
-        </Routes>
-      </Router>
-    </AuthProvider>
+      <AuthProvider>
+          <Router>
+              <Routes>
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/dashboard" element={
+                      <ProtectedRoute>
+                          <Dashboard />
+                      </ProtectedRoute>
+                  }>
+                      <Route path="users" element={<Users />} />
+                      <Route path="units" element={<Unit />} />
+                      <Route path="users/create" element={<UserCreate />} />
+                      <Route path="users/edit/:id" element={<UserEdit />} />
+                  </Route>
+              </Routes>
+          </Router>
+      </AuthProvider>
   );
 };
 
