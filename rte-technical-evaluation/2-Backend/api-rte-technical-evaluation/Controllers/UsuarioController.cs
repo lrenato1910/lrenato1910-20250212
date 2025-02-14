@@ -30,7 +30,7 @@ public class UsuarioController : BaseController
         => Ok(await _usuarioManager.Create(usuario));
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetById(int id)
+    public async Task<IActionResult> GetById([FromRoute] int id)
         => Ok(await _usuarioManager.GetById(id));
 
     [HttpGet]

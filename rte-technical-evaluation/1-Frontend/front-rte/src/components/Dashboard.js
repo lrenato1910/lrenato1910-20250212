@@ -3,7 +3,7 @@ import { Link, Outlet } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './Auth/AuthContext';
 import './Dashboard.css';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Importe o Bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const Dashboard = () => {
@@ -36,7 +36,7 @@ const Dashboard = () => {
         </button>
         </nav>
         <div className="content flex-grow-1 p-4">
-          <h1 className="text-center">Bem-vindo à Dashboard</h1>
+          <h1 className="text-center"></h1>
           <div className="card mt-4">
             <div className="card-body">
               <Outlet />

@@ -20,10 +20,9 @@ const UserForm = ({ onSuccess }) => {
         , Ativo: true
       };
 
-      const token = localStorage.getItem('authToken');
       const response = await api.post('usuarios/Create', Usuario, {
         headers: {
-          'Authorization': `Bearer ${token}`,
+          'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
           'Content-Type': 'application/json'
         }
       });

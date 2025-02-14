@@ -8,6 +8,7 @@ import Collaborator from './components/Collaborators/CollaboratorList';
 import Unit from './components/Units/UnitList'; 
 import Users from './components/Users/UserList'; 
 import UserCreate from './components/Users/UserForm';
+import UserEdit from './components/Users/UserEdit';
 import Dashboard from './components/Dashboard';
 import ProtectedRoute from './ProtectedRoute'; 
 
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="users" element={<Users />} />
           <Route path="units" element={<Unit />} />
           <Route path="users/create" element={<UserCreate />} />
+          <Route path="users/edit/:id" element={<UserEdit />} />
         </Route>
         </Routes>
       </Router>
