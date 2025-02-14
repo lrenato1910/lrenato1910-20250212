@@ -1,62 +1,98 @@
-/* Dashboard.css */
-
+/* Container principal */
 .dashboard-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #f4f4f4;
   min-height: 100vh;
-  padding: 20px;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
 }
 
-.dashboard-header {
-  background-color: #4CAF50;
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background: linear-gradient(135deg, #120b5c, #0e0d14);
   color: white;
-  padding: 20px;
-  width: 100%;
-  text-align: center;
-  margin-bottom: 20px;
-  border-radius: 8px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+  transition: width 0.3s;
 }
 
-.dashboard-nav {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
-.dashboard-nav a {
-  text-decoration: none;
-  color: #4CAF50;
+.sidebar h2 {
+  color: white;
   font-weight: bold;
-  transition: color 0.3s;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.dashboard-nav a:hover {
-  color: #357a38;
+.sidebar .nav-link {
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
 }
 
-.logout-button {
-  padding: 10px 20px;
-  background-color: #f44336;
+.sidebar .nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(5px);
+}
+
+.sidebar .nav-link i {
+  width: 20px;
+  text-align: center;
+  margin-right: 10px;
+}
+
+/* Botão de Logout */
+.btn-logout {
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
   color: white;
   border: none;
+  padding: 10px;
   border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  transition: all 0.3s;
+  font-weight: bold;
 }
 
-.logout-button:hover {
-  background-color: #d32f2f;
+.btn-logout:hover {
+  background: linear-gradient(135deg, #ff4b2b, #ff416c);
+  transform: scale(1.05);
 }
 
-.dashboard-content {
-  background-color: white;
+/* Conteúdo Principal */
+.main-content {
+  flex-grow: 1;
+  background: white;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 80%;
-  max-width: 800px;
+  border-radius: 10px;
+  margin: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Card */
+.card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 60px;
+  }
+
+  .sidebar h2 {
+    display: none;
+  }
+
+  .sidebar .nav-link span {
+    display: none;
+  }
+
+  .sidebar .nav-link i {
+    margin-right: 0;
+  }
+}

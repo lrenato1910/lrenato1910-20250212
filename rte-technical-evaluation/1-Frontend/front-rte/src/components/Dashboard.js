@@ -7,44 +7,47 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const Dashboard = () => {
-    const { logout } = useAuth();
-    const navigate = useNavigate();
-    
-    const handleLogout = () => {
-        logout();
-        navigate('/login');
-    };
+  const { logout } = useAuth();
+  const navigate = useNavigate();
 
-    return (
-      <div className="d-flex" style={{ minHeight: '100vh' }}>
-        <nav className="bg-light sidebar p-3" style={{ width: '250px' }}>
-        <h2 className="text-center">Dashboard</h2>
+  const handleLogout = () => {
+    localStorage.removeItem('authToken');
+    logout();
+    navigate('/login');
+  };
+
+  return (
+    <div className="dashboard-container">
+      {/* Sidebar */}
+      <nav className="sidebar p-3">
+        <h2 className="text-center mb-4">Dashboard</h2>
         <ul className="nav flex-column">
           <li className="nav-item">
             <Link className="nav-link" to="users">
-              <i className="fas fa-users"></i> Usuários
+              <i className="fas fa-users me-2"></i> Usuários
             </Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link" to="units">
-              <i className="fas fa-building"></i> Unidades
+              <i className="fas fa-building me-2"></i> Unidades
             </Link>
           </li>
         </ul>
-        <button className="btn btn-danger mt-4" onClick={handleLogout}>
-          <i className="fas fa-sign-out-alt"></i> Logout
+        <button className="btn btn-logout w-100 mt-4" onClick={handleLogout}>
+          <i className="fas fa-sign-out-alt me-2"></i> Logout
         </button>
-        </nav>
-        <div className="content flex-grow-1 p-4">
-          <h1 className="text-center"></h1>
-          <div className="card mt-4">
-            <div className="card-body">
-              <Outlet />
-            </div>
+      </nav>
+
+      {/* Main Content */}
+      <div className="main-content p-4">
+        <div className="card">
+          <div className="card-body">
+            <Outlet />
           </div>
         </div>
       </div>
-    );
+    </div>
+  );
 };
 
 export default Dashboard;

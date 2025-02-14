@@ -18,9 +18,11 @@ export const AuthProvider = ({ children }) => {
     };
 
     useEffect(() => {
-        return () => {
-            localStorage.removeItem('isAuthenticated'); 
+        const checkAuth = () => {
+            const isAuth = localStorage.getItem('isAuthenticated') === 'true';
+            setIsAuthenticated(isAuth);
         };
+        checkAuth();
     }, []);
 
     return (
