@@ -60,7 +60,7 @@ public class UsuarioDAL : IUsuarioDAL
     #region [ Update ]
     public async Task<bool> Update(shared_rte_technical_evaluation.Models.Usuario.Usuario usuario)
     {
-        var usuarioDb = await _context.Usuarios.FindAsync(usuario.Id);
+        var usuarioDb = await _context.Usuarios.FindAsync(usuario.id);
 
         if (usuarioDb == null) 
             return false;

@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import api from '../../api';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const UserForm = ({ onSuccess }) => {
   const [login, setLogin] = useState('');
   const [senha, setSenha] = useState('');
   const [status, setStatus] = useState('ativo');
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      debugger;
-      
+    try {      
       let Usuario = {
-        Id: 74
+        Id: 0
         , Login: login
         , Senha: senha
         , Ativo: true
@@ -28,8 +28,8 @@ const UserForm = ({ onSuccess }) => {
         }
       });
 
-      onSuccess();
       alert('Usuário cadastrado com sucesso!');
+      navigate('../users');
     } catch (err) {
       setError('Erro ao cadastrar usuário. Tente novamente.');
     }

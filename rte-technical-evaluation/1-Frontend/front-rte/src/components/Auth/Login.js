@@ -16,10 +16,9 @@ const Login = () => {
 
   const handleSubmit = async (e) => {    
     e.preventDefault();
-    setError(null); // Limpa erros anteriores
+    setError(null);
 
     try {
-      // Faça a chamada para a API para autenticar o usuário
       const response = await api.post('Authenticate', credentials);
       if (response.status === 200) {
         debugger;
