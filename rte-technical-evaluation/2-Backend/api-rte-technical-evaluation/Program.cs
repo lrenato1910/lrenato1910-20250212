@@ -1,9 +1,11 @@
 using api_rte_technical_evaluation.Middleware;
 using infrastructure_rte_technical_evaluation.Colaborador;
 using infrastructure_rte_technical_evaluation.Context;
+using infrastructure_rte_technical_evaluation.Unidade;
 using infrastructure_rte_technical_evaluation.Usuario;
 using manager_rte_technical_evaluation.Colaborador;
 using manager_rte_technical_evaluation.Services.Authentication;
+using manager_rte_technical_evaluation.Unidade;
 using manager_rte_technical_evaluation.Usuario;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -12,8 +14,6 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
 
 builder.Services.AddControllers();
 
@@ -65,11 +65,18 @@ builder.Services.AddOpenApi();
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddTransient<IAuthenticationService, AuthenticationService>();
+
 builder.Services.AddTransient<IUsuarioManager, UsuarioManager>();
+
 builder.Services.AddTransient<IColaboradorManager, ColaboradorManager>();
 
+builder.Services.AddTransient<IUnidadeManager, UnidadeManager>();
+
 builder.Services.AddTransient<IUsuarioDAL, UsuarioDAL>();
+
 builder.Services.AddTransient<IColaboradorDAL, ColaboradorDAL>();
+
+builder.Services.AddTransient<IUnidadeDAL, UnidadeDAL>();
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -107,10 +114,9 @@ app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-    c.RoutePrefix = string.Empty; // Para carregar no root do localhost
+    c.RoutePrefix = string.Empty;
 });
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();

@@ -9,7 +9,7 @@ public class AppDbContext : DbContext
 
     public DbSet<shared_rte_technical_evaluation.Models.Usuario.Usuario> Usuarios { get; set; }
     public DbSet<shared_rte_technical_evaluation.Models.Colaborador.Colaborador> Colaboradores { get; set; }
-    public DbSet<Unidade> Unidades { get; set; }
+    public DbSet<shared_rte_technical_evaluation.Models.Unidade.Unidade> Unidades { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
