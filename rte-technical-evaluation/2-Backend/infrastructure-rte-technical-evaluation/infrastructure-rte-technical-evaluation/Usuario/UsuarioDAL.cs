@@ -75,7 +75,7 @@ public class UsuarioDAL : IUsuarioDAL
     }
     #endregion
 
-    #region [ Update ]
+    #region [ Delete ]
     public async Task<bool> Delete(int id)
     {
         var usuarioDb = await _context.Usuarios.FindAsync(id);

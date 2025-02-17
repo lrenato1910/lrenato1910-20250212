@@ -18,8 +18,8 @@ public class ColaboradorDAL : IColaboradorDAL
     }
     #endregion
 
-    #region [ GetColaborador ]
-    public async Task<shared_rte_technical_evaluation.Models.Colaborador.Colaborador?> GetColaborador(int id)
+    #region [ GetById ]
+    public async Task<shared_rte_technical_evaluation.Models.Colaborador.Colaborador?> GetById(int id)
     {
         var Colaborador = await _context.Colaboradores.FindAsync(id);
 
@@ -27,8 +27,8 @@ public class ColaboradorDAL : IColaboradorDAL
     }
     #endregion
 
-    #region [ GetColaboradorList ]
-    public async Task<IEnumerable<shared_rte_technical_evaluation.Models.Colaborador.Colaborador?>> GetColaboradorList()
+    #region [ GetAll ]
+    public async Task<IEnumerable<shared_rte_technical_evaluation.Models.Colaborador.Colaborador?>> GetAll()
     {
         var Colaboradores = await _context.Colaboradores.ToListAsync();
 
@@ -36,8 +36,8 @@ public class ColaboradorDAL : IColaboradorDAL
     }
     #endregion
 
-    #region [ CreateColaborador ]
-    public async Task<bool> CreateColaborador(shared_rte_technical_evaluation.Models.Colaborador.Colaborador Colaborador)
+    #region [ Crete ]
+    public async Task<bool> Crete(shared_rte_technical_evaluation.Models.Colaborador.Colaborador Colaborador)
     {
         _context.Colaboradores.Add(Colaborador);
 
@@ -47,8 +47,8 @@ public class ColaboradorDAL : IColaboradorDAL
     }
     #endregion
 
-    #region [ UpdateColaborador ]
-    public async Task<bool> UpdateColaborador(shared_rte_technical_evaluation.Models.Colaborador.Colaborador Colaborador)
+    #region [ Update ]
+    public async Task<bool> Update(shared_rte_technical_evaluation.Models.Colaborador.Colaborador Colaborador)
     {
         var ColaboradorDb = await _context.Colaboradores.FindAsync(Colaborador.Id);
 
@@ -57,6 +57,22 @@ public class ColaboradorDAL : IColaboradorDAL
 
         ColaboradorDb.Nome = Colaborador.Nome;
         ColaboradorDb.UnidadeId = Colaborador.UnidadeId;
+
+        await _context.SaveChangesAsync();
+
+        return true;
+    }
+    #endregion
+
+    #region [ Delete ]
+    public async Task<bool> Delete(int id)
+    {
+        var entityData = await _context.Colaboradores.FindAsync(id);
+
+        if (entityData == null)
+            return false;
+
+        _context.Colaboradores.Remove(entityData);
 
         await _context.SaveChangesAsync();
 
