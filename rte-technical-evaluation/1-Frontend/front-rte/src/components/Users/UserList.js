@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import api from '../../api';
 import { Link } from 'react-router-dom';
 import useToast from '../Libs/toast/useToast';
+import useSweetAlert from '../Libs/swal/useSwal';
 
 const Users = () => {
   const hasMounted = useRef(false);
@@ -9,6 +10,7 @@ const Users = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const showToast = useToast();
+  const { showSuccess, showError, showConfirmation } = useSweetAlert();
 
   useEffect(() => {
     if (hasMounted.current) return;
@@ -36,23 +38,30 @@ const Users = () => {
     fetchUsuarios();
   }, []);
 
-  const deleteItem = async (id) => {
-    try {
-      const response = await api.delete(`usuarios/${id}`, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
-          'Content-Type': 'application/json'
-        }
-      });
+  const handleConfirmation = () => {
+    
+  };
 
-      if (response.status === 200) {  // Verifique se o status é 200
-          // Atualizar a tabela removendo o item excluído
-          setUsuarios(usuarios.filter(usuario => usuario.id !== id));
-      } else {
-          console.error('Erro ao excluir o item');
+  const deleteItem = async (id) => {
+    const result = await showConfirmation('Tem certeza?', 'Você não poderá reverter isso!');
+
+    if (result.isConfirmed) {
+      try {
+        const response = await api.delete(`usuarios/${id}`, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+            'Content-Type': 'application/json'
+          }
+        });
+  
+        if (response.status === 200) {
+            setUsuarios(usuarios.filter(usuario => usuario.id !== id));
+        } else {
+            console.error('Erro ao excluir o item');
+        }
+      } catch (error) {
+        console.error('Erro ao excluir o item', error);
       }
-    } catch (error) {
-      console.error('Erro ao excluir o item', error);
     }
   };
 
@@ -63,12 +72,10 @@ const Users = () => {
     <div className="container mt-5">
     <h2 className="text-center mb-4 text-primary">Lista de Usuários</h2>
 
-    {/* Botão para criar novo usuário */}
     <Link to="create" className="btn btn-success mb-3">
       <i className="fas fa-plus me-2"></i>Criar Novo Usuário
     </Link>
 
-    {/* Tabela de usuários */}
     <div className="table-responsive">
       <table className="table table-striped table-bordered table-hover shadow-lg">
         <thead className="table-dark">
