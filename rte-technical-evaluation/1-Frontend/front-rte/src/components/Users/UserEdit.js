@@ -12,7 +12,7 @@ const UserEdit = () => {
 
   const [login, setLogin] = useState('');
   const [senha, setSenha] = useState('');
-  const [status, setStatus] = useState('ativo');
+  const [status, setStatus] = useState('true');
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 

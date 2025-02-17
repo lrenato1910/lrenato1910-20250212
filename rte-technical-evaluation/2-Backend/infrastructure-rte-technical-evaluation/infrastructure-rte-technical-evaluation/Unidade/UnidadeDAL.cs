@@ -77,6 +77,7 @@ public class UnidadeDAL : IUnidadeDAL
             return false;
 
         unidadeDb.Nome = unidade.Nome;
+        unidadeDb.Ativo = unidade.Ativo;
 
         await _context.SaveChangesAsync();
         return true;
