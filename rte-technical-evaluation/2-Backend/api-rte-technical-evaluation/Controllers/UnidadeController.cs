@@ -41,7 +41,7 @@ public class UnidadeController : BaseController
     /// </summary>
     /// <param name="unidade">Dados da unidade a ser criada.</param>
     /// <returns>Resultado da operação de criação.</returns>
-    [HttpPost]
+    [HttpPost("Create")]
     public async Task<IActionResult> Create([FromBody] Unidade unidade)
         => Ok(await _unidadeManager.Create(unidade));
     #endregion

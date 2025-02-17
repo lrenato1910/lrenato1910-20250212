@@ -17,7 +17,7 @@ import UserEdit from './components/Users/UserEdit';
 import Dashboard from './components/Dashboard';
 import ProtectedRoute from './ProtectedRoute'; 
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Estilos do toast
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   return (
@@ -32,7 +32,11 @@ const App = () => {
                       </ProtectedRoute>
                   }>
                       <Route path="users" element={<Users />} />
+                      
                       <Route path="units" element={<Unit />} />
+                      <Route path="units/create" element={<UnitCreate />} />
+                      <Route path="units/edit/:id" element={<UnitEdit />} />
+
                       <Route path="collaborator" element={<CollaboratorList />} />
                       <Route path="users/create" element={<UserCreate />} />
                       <Route path="users/edit/:id" element={<UserEdit />} />
