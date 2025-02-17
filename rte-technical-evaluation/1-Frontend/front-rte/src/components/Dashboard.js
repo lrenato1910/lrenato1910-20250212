@@ -28,6 +28,11 @@ const Dashboard = () => {
             </Link>
           </li>
           <li className="nav-item">
+            <Link className="nav-link" to="collaborator">
+              <i className="fas fa-user me-2"></i> Colaboradores
+            </Link>
+          </li>
+          <li className="nav-item">
             <Link className="nav-link" to="units">
               <i className="fas fa-building me-2"></i> Unidades
             </Link>
