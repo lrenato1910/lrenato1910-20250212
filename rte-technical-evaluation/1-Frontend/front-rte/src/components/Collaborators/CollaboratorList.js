@@ -68,7 +68,7 @@ const CollaboratorList = () => {
       <h2 className="text-center mb-4 text-primary">Lista de Colaboradores</h2>
   
       <Link to="create" className="btn btn-success mb-3">
-        <i className="fas fa-plus me-2"></i>Criar Novo Usuário
+        <i className="fas fa-plus me-2"></i>Criar Novo Colaborador
       </Link>
   
       <div className="table-responsive">

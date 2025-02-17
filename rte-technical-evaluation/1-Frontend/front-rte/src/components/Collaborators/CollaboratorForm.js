@@ -1,18 +1,68 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import api from '../../api';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const CollaboratorForm = ({ onSuccess }) => {
+  const hasMounted = useRef(false);
+
+  const [usuarios, setUsuarios] = useState([]);
+  const [unidades, setUnidades] = useState([]);
+  const [selectedUser, setSelectedUser] = useState('');
+  const [selectedUnit, setSelectedUnit] = useState('');
+
   const [nome, setNome] = useState('');
-  const [codigoUnidade, setCodigoUnidade] = useState('');
+  const [codigoid, setCodigoUnidade] = useState('');
   const [usuarioId, setUsuarioId] = useState('');
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (hasMounted.current) return;
+    hasMounted.current = true;
+
+    const fetchUsuarios = async () => {
+      try {
+        const response = await api.get('usuarios', {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+            'Content-Type': 'application/json'
+          }
+        });
+        
+        setUsuarios(response.data.apiResultData);
+      } catch (error) {
+        console.error('Erro ao buscar usuários:', error);
+      }
+    };
+
+    const fetchUnidades = async () => {
+      try {
+        const response = await api.get('unidade', {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+            'Content-Type': 'application/json'
+          }
+        });
+
+        setUnidades(response.data.apiResultData);
+      } catch (error) {
+        console.error('Erro ao buscar unidades:', error);
+      }
+    };
+
+    fetchUsuarios();
+    fetchUnidades();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await api.post('/collaborators', { nome, codigoUnidade, usuarioId });
-      onSuccess(); // chamar a função de callback em caso de sucesso
+      await api.post('/collaborators', { nome, codigoid, usuarioId });
+      onSuccess();
       alert('Colaborador cadastrado com sucesso!');
+
+
+      //collaborator
     } catch (err) {
       setError('Erro ao cadastrar colaborador. Tente novamente.');
       console.error('Erro ao cadastrar:', err);
@@ -20,41 +70,56 @@ const CollaboratorForm = ({ onSuccess }) => {
   };
 
   return (
-    <div>
-      <h2>Cadastro de Colaborador</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form className="p-3 border rounded shadow" onSubmit={handleSubmit}>
-        <div>
-          <label>Nome:</label>
-          <input
-            type="text"
-            value={nome}
-            onChange={(e) => setNome(e.target.value)}
-            required
-          />
+        <div className="container mt-5">
+          <h2 className="text-center mb-4">Cadastro de Colaborador</h2>
+          
+          <Link to="../collaborator" className="btn btn-outline-success mb-3">
+            Voltar
+          </Link>
+      
+          {error && <p className="text-danger">{error}</p>}
+          
+          <form onSubmit={handleSubmit} className="border p-4 rounded shadow">
+            <div className="mb-3">
+              <label htmlFor="userSelect" className="form-label">Selecione um Usuário</label>
+                <select
+                  id="userSelect"
+                  className="form-select"
+                  value={selectedUser}
+                  onChange={(e) => setSelectedUser(e.target.value)}
+                  required
+                >
+                  <option value="">Escolha um usuário</option>
+                  {usuarios.map(usuario => (
+                    <option key={usuario.id} value={usuario.id}>
+                      {usuario.login}
+                    </option>
+                  ))}
+                </select>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="unitSelect" className="form-label">Selecione uma Unidade</label>
+              <select
+                id="unitSelect"
+                className="form-select"
+                value={selectedUnit}
+                onChange={(e) => setSelectedUnit(e.target.value)}
+                required
+              >
+                <option value="">Escolha uma unidade</option>
+                {unidades.map(unidade => (
+                  <option key={unidade.id} value={unidade.id}>
+                    {unidade.nome}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <button type="submit" className="btn btn-success w-100">
+              Cadastrar
+            </button>
+          </form>
         </div>
-        <div>
-          <label>Código da Unidade:</label>
-          <input
-            type="text"
-            value={codigoUnidade}
-            onChange={(e) => setCodigoUnidade(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>ID do Usuário:</label>
-          <input
-            type="text"
-            value={usuarioId}
-            onChange={(e) => setUsuarioId(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Cadastrar</button>
-      </form>
-    </div>
-  );
-};
+      );
+    };
 
 export default CollaboratorForm;

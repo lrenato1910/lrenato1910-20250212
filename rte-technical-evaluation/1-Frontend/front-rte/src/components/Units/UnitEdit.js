@@ -31,7 +31,7 @@ const UnitEdit = () => {
 
         setCodigo(response.data.apiResultData.codigo);
         setNome(response.data.apiResultData.nome);
-        setStatus(response.data.apiResultData.status);
+        setStatus(response.data.apiResultData.ativo);
       } catch (err) {
         setError('Erro ao carregar unidade.');
       }
@@ -49,7 +49,6 @@ const UnitEdit = () => {
         , Ativo: status === "true" ? true : false
       };
 
-      debugger;
       const response = await api.put('unidade', Unidade, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('authToken')}`,

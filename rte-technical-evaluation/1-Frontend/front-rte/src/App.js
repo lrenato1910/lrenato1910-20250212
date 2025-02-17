@@ -4,7 +4,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './components/Auth/AuthContext'; 
 import Login from './components/Auth/Login'; 
 import Register from './components/Auth/Register'; 
-import CollaboratorList from './components/Collaborators/CollaboratorList'; 
+
+import Collaborator from './components/Collaborators/CollaboratorList'; 
+import CollaboratorCreate from './components/Collaborators/CollaboratorForm'; 
+import CollaboratorEdit from './components/Collaborators/CollaboratorEdit'; 
 
 import Unit from './components/Units/UnitList'; 
 import UnitCreate from './components/Units/UnitForm'; 
@@ -32,14 +35,16 @@ const App = () => {
                       </ProtectedRoute>
                   }>
                       <Route path="users" element={<Users />} />
-                      
+                      <Route path="users/create" element={<UserCreate />} />
+                      <Route path="users/edit/:id" element={<UserEdit />} />
+
                       <Route path="units" element={<Unit />} />
                       <Route path="units/create" element={<UnitCreate />} />
                       <Route path="units/edit/:id" element={<UnitEdit />} />
 
-                      <Route path="collaborator" element={<CollaboratorList />} />
-                      <Route path="users/create" element={<UserCreate />} />
-                      <Route path="users/edit/:id" element={<UserEdit />} />
+                      <Route path="collaborator" element={<Collaborator />} />
+                      <Route path="collaborator/create" element={<CollaboratorCreate />} />
+                      <Route path="collaborator/edit/:id" element={<CollaboratorEdit />} />
                   </Route>
               </Routes>
           </Router>
