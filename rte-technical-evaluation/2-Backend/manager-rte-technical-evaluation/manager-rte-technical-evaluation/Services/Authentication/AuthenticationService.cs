@@ -16,12 +16,25 @@ public class AuthenticationService : IAuthenticationService
     private readonly IUsuarioDAL _usuarioDAL;
     #endregion
 
+    #region [ CTOR ]
+    /// <summary>
+    /// Inicializa uma nova instância do <see cref="AuthenticationService"/>.
+    /// </summary>
+    /// <param name="configuration">Configurações da aplicação.</param>
+    /// <param name="usuarioDAL">Interface de acesso a dados de usuários.</param>
     public AuthenticationService(IConfiguration configuration, IUsuarioDAL usuarioDAL)
     {
         _configuration = configuration;
         _usuarioDAL = usuarioDAL;
     }
+    #endregion
 
+    #region [ Authenticate ]
+    /// <summary>
+    /// Autentica um usuário com base no modelo de autenticação fornecido.
+    /// </summary>
+    /// <param name="authenticationModel">Modelo contendo as credenciais do usuário.</param>
+    /// <returns>Um objeto <see cref="ApiResultModel"/> com o resultado da operação de autenticação.</returns>
     public async Task<ApiResultModel> Authenticate(AuthenticationModel authenticationModel)
     {
         var isValidUser = await _usuarioDAL.Authenticate(authenticationModel);
@@ -45,4 +58,5 @@ public class AuthenticationService : IAuthenticationService
 
         return new ApiResultModel().WithError(new UnauthorizedAccessException("Login/senha inválidos").ToString());
     }
+    #endregion
 }
