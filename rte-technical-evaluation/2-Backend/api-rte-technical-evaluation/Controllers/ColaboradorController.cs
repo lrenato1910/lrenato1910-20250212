@@ -42,6 +42,7 @@ public class ColaboradorController : BaseController
     /// <param name="colaborador">Dados do colaborador a ser criado.</param>
     /// <returns>Resultado da operação de criação.</returns>
     [HttpPost]
+    [HttpPost("Create")]
     public async Task<IActionResult> Create([FromBody] Colaborador colaborador)
         => Ok(await _colaboradorManager.Create(colaborador));
     #endregion

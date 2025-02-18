@@ -45,6 +45,7 @@ public class ColaboradorManager : BaseManager, IColaboradorManager
     public async Task<ApiResultModel> GetAll()
     {
         var result = await _colaboradorDAL.GetAll();
+
         return new ApiResultModel().WithSuccess(result);
     }
     #endregion

@@ -11,8 +11,6 @@ const CollaboratorList = () => {
   const [error, setError] = useState(null);
   const showToast = useToast();
   const { showSuccess, showError, showConfirmation } = useSweetAlert();
-
-
   
   useEffect(() => {
     if (hasMounted.current) return;
@@ -27,7 +25,7 @@ const CollaboratorList = () => {
             'Content-Type': 'application/json'
           }
         });
-        
+
         showToast('Colaboradores listados com sucesso!', 'success');
         setCollaborators(response.data.apiResultData);
       } catch (err) {
@@ -83,35 +81,28 @@ const CollaboratorList = () => {
             </tr>
           </thead>
           <tbody>
-            {collaborators.map((usuario) => (
-              <tr key={usuario.id} className="align-middle">
+            {collaborators.map((collaborator) => (
+              <tr key={collaborator.id} className="align-middle">
                 <td className="col-2">
                   <div className="d-flex gap-2">
                     <Link
-                      to={`./edit/${usuario.id}`}
+                      to={`./edit/${collaborator.id}`}
                       className="btn btn-warning btn-sm flex-grow-1"
                     >
                       <i className="fas fa-edit me-1"></i>Editar
                     </Link>
                     <button
                       className="btn btn-danger btn-sm flex-grow-1"
-                      onClick={() => deleteItem(usuario.id)}
+                      onClick={() => deleteItem(collaborator.id)}
                     >
                       <i className="fas fa-trash me-1"></i>Excluir
                     </button>
                   </div>
                 </td>
-                <td className="col-1">{usuario.id}</td>
-                <td className="col-4">{usuario.nome}</td>
-                <td className="col-4">{usuario.unidade}</td>
-                <td className="col-4">{usuario.usuario}</td>
-                <td className="col-2">
-                  {usuario.ativo ? (
-                    <span className="badge bg-success">Ativo</span>
-                  ) : (
-                    <span className="badge bg-danger">Inativo</span>
-                  )}
-                </td>
+                <td className="col-1">{collaborator.id}</td>
+                <td className="col-4">{collaborator.nome}</td>
+                <td className="col-4">{collaborator.unidade.nome}</td>
+                <td className="col-4">{collaborator.usuario.login}</td>
               </tr>
             ))}
             {collaborators.length === 0 && (

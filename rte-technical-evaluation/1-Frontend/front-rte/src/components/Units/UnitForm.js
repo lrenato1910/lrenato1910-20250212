@@ -14,14 +14,14 @@ const UnitForm = ({ onSuccess }) => {
     e.preventDefault();
 
     try {
-      let Unidade = {
+      let Colaborador = {
         Id: 0
         , Codigo: codigo
         , Nome: nome
         , Ativo: status === "true" ? true : false
       };
 
-      const response = await api.post('unidade/Create', Unidade, {
+      const response = await api.post('colaborador/Create', Colaborador, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
           'Content-Type': 'application/json'

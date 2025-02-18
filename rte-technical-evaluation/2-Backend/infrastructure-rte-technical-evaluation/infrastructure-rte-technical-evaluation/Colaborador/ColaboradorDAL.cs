@@ -44,7 +44,7 @@ public class ColaboradorDAL : IColaboradorDAL
     /// <returns>Uma coleção de objetos <see cref="shared_rte_technical_evaluation.Models.Colaborador.Colaborador"/>.</returns>
     public async Task<IEnumerable<shared_rte_technical_evaluation.Models.Colaborador.Colaborador?>> GetAll()
     {
-        var colaboradores = await _context.Colaboradores.ToListAsync();
+        var colaboradores = await _context.Colaboradores.Include(c => c.Unidade).Include(c => c.Usuario).ToListAsync();
         return colaboradores;
     }
     #endregion
