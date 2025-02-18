@@ -21,7 +21,7 @@ const UnitForm = ({ onSuccess }) => {
         , Ativo: status === "true" ? true : false
       };
 
-      const response = await api.post('colaborador/Create', Colaborador, {
+      const response = await api.post('unidade/Create', Colaborador, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
           'Content-Type': 'application/json'
